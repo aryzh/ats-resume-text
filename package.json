@@ -1,0 +1,47 @@
+{
+  "name": "ats-resume-text",
+  "version": "0.1.0",
+  "description": "See the plain text an ATS extracts from a PDF resume, and catch layouts that scramble it. Runs locally.",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "bin": {
+    "ats-resume-text": "bin/cli.js"
+  },
+  "files": [
+    "src",
+    "bin"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^6.0.227"
+  },
+  "keywords": [
+    "ats",
+    "resume",
+    "cv",
+    "pdf",
+    "applicant-tracking-system",
+    "resume-parser",
+    "job-search"
+  ],
+  "author": "Hiretop (https://hiretop.com)",
+  "homepage": "https://github.com/aryzh/ats-resume-text#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aryzh/ats-resume-text.git"
+  },
+  "bugs": "https://github.com/aryzh/ats-resume-text/issues",
+  "license": "MIT"
+}
