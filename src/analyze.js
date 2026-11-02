@@ -60,8 +60,10 @@ export function findLocation(text) {
     return match[1].trim().replace(/\s+/g, " ");
   }
 
+  // [ \t] rather than \s so a city match can't reach back across a line break
+  // and swallow the job title above it.
   for (const match of text.matchAll(
-    /\b([A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){0,2}),\s*([A-Z]{2})\b/g,
+    /\b([A-Z][A-Za-z.'-]+(?:[ \t]+[A-Z][A-Za-z.'-]+){0,2}),[ \t]*([A-Z]{2})\b/g,
   )) {
     if (US_STATES.has(match[2])) return `${match[1]}, ${match[2]}`;
   }
@@ -70,7 +72,7 @@ export function findLocation(text) {
     country.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
   ).join("|");
   const cityCountry = text.match(
-    new RegExp(`\\b([A-Z][A-Za-z.'-]+(?:\\s+[A-Z][A-Za-z.'-]+){0,2}),\\s*(${countryAlt})\\b`, "i"),
+    new RegExp(`\\b([A-Z][A-Za-z.'-]+(?:[ \\t]+[A-Z][A-Za-z.'-]+){0,2}),[ \\t]*(${countryAlt})\\b`, "i"),
   );
   if (cityCountry) return `${cityCountry[1]}, ${cityCountry[2]}`;
 

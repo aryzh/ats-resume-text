@@ -56,3 +56,8 @@ test("helpers", () => {
   assert.equal(findLocation("Email address: jane@x.com"), null);
   assert.equal(countGarbled("ok �\u0001"), 2);
 });
+
+test("location doesn't swallow the title on the line above", () => {
+  assert.equal(findLocation("Jane Doe\nAccount Executive\nValencia, Spain"), "Valencia, Spain");
+  assert.equal(findLocation("Jane Doe\nSales Manager\nAustin, TX"), "Austin, TX");
+});
